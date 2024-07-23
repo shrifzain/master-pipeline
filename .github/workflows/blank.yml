@@ -1,32 +1,17 @@
-name: Pipeline
+name: No-Op Workflow
 
 on:
   push:
     branches:
-      - main # Trigger the workflow on pushes to the 'devsecops-pipeline' branch
+      - main
 
 jobs:
-  checkout:
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout source code
-        run:  echo "Checkout of code is done"
-        
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - name: Build
-        run: echo "Code build is done"
-
-
-  deploy:
+  noop:
     runs-on: ubuntu-latest
 
     steps:
-     - name: application deploymnent
-       run: |
-         echo "Deployment Completed"
-         java -version # Print the Java version (placeholder for actual deployment steps)
-         python --version # Print the Python version (placeholder for actual deployment steps)
+      - name: Checkout code
+        uses: actions/checkout@v3
 
+      - name: Do nothing
+        run: echo "This is a no-op workflow that does nothing."
